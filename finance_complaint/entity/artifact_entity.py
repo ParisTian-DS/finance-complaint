@@ -16,7 +16,6 @@ DataValidationArtifact = namedtuple("DataValidationArtifact", ["accepted_file_pa
 DataTransformationArtifact = namedtuple("DataTransformationArtifact",
                                         ["transformed_train_file_path", "exported_pipeline_file_path",
                                          "transformed_test_file_path",
-
                                          ])
 
 PartialModelTrainerRefArtifact = namedtuple("PartialModelTrainerRefArtifact", ["trained_model_file_path",
