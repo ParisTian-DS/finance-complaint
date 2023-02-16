@@ -8,6 +8,9 @@ class DataIngestionArtifact:
     feature_store_file_path:str
     metadata_file_path:str
     download_dir:str
+
+    def to_dict(self):
+        return self.__dict__
 """
 
 DataIngestionArtifact = namedtuple("DataIngestionArtifact",
