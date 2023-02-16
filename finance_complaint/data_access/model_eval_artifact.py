@@ -1,5 +1,10 @@
+'''
+This is for uploading model to MongoDB
+'''
+
 from finance_complaint.config.mongo_client import MongodbClient
 from finance_complaint.entity.artifact_entity import ModelEvaluationArtifact
+
 
 
 class ModelEvaluationArtifactData:
