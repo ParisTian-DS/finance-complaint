@@ -16,15 +16,18 @@ from finance_complaint.config.spark_manager import spark_session
 # For Training
 # _fit -> It will calculate freq of each unique value
 class FrequencyEncoder(Estimator, HasInputCols, HasOutputCols,
+                        # for saving and loading it back
                        DefaultParamsReadable, DefaultParamsWritable):
     frequencyInfo = Param(Params._dummy(), "getfrequencyInfo", "getfrequencyInfo",
                           typeConverter=TypeConverters.toList)
 
-    @keyword_only
+    # provide additional function to the original function
+    @keyword_only # put all parameter (inputCols, outputCols) you provided inside self._input_kwargs
     def __init__(self, inputCols: List[str] = None, outputCols: List[str] = None, ):
         super(FrequencyEncoder, self).__init__()
         kwargs = self._input_kwargs
 
+        # storage freq info
         self.frequencyInfo = Param(self, "frequencyInfo", "")
         self._setDefault(frequencyInfo="")
         # self._set(**kwargs)
@@ -54,6 +57,7 @@ class FrequencyEncoder(Estimator, HasInputCols, HasOutputCols,
         """
         return self._set(outputCols=value)
 
+    # claim a estimator already, this _fit() is like a contractor, you must define it, otherwise, it will raise an error
     def _fit(self, dataframe: DataFrame):
         input_columns = self.getInputCols()
         print(f"Input columns: {input_columns}")
@@ -93,8 +97,10 @@ class FrequencyEncoderModel(FrequencyEncoder, Transformer):
         freqInfo = self.getfrequencyInfo()
         for in_col, out_col, freq_info in zip(inputCols, outputCols, freqInfo):
             frequency_dataframe: DataFrame = spark_session.createDataFrame(freq_info)
-
+            
             columns = frequency_dataframe.columns
+
+            #inner join
             dataframe = dataframe.join(frequency_dataframe,
                                        on=dataframe[in_col] == frequency_dataframe[columns[0]])
             # generate new columns then drop previous columns
