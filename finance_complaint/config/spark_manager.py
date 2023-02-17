@@ -14,7 +14,7 @@ secret_access_key = os.getenv(AWS_SECRET_ACCESS_KEY_ENV_KEY, )
 # spark_session=spark
 #
 
-
+# if use S3 bucket in pyspark, this addtional jars packages must be added, very important!
 spark_session = SparkSession.builder.master('local[*]').appName('finance_complaint') \
     .config("spark.executor.instances", "1") \
     .config("spark.executor.memory", "6g") \
@@ -25,7 +25,7 @@ spark_session = SparkSession.builder.master('local[*]').appName('finance_complai
     # 
     
 
-
+# read data using pyspark from S3 bucket configuration
 spark_session._jsc.hadoopConfiguration().set("fs.s3a.awsAccessKeyId", access_key_id)
 spark_session._jsc.hadoopConfiguration().set("fs.s3a.awsSecretAccessKey", secret_access_key)
 spark_session._jsc.hadoopConfiguration().set("fs.s3a.impl","org.apache.hadoop.fs.s3a.S3AFileSystem")
