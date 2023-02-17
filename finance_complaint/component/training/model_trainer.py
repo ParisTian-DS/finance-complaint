@@ -120,7 +120,7 @@ class ModelTrainer:
 
             model = self.get_model(label_indexer_model=label_indexer_model)
 
-            # In PySpark, it will do transform then prediction
+            # In PySpark, it will do transform then automated prediction
             trained_model = model.fit(train_dataframe)
             train_dataframe_pred = trained_model.transform(train_dataframe)
             test_dataframe_pred = trained_model.transform(test_dataframe)
