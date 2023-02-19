@@ -11,7 +11,7 @@ class FinanceDataSchema:
 
     def __init__(self):
         self.col_company_response: str = 'company_response'
-        self.col_consumer_consent_provided: str = 'consumer_consent_provided'
+        #self.col_consumer_consent_provided: str = 'consumer_consent_provided'
         self.col_submitted_via = 'submitted_via'
         self.col_timely: str = 'timely'
         self.col_diff_in_days: str = 'diff_in_days'
@@ -33,7 +33,7 @@ class FinanceDataSchema:
         try:
             schema = StructType([
                 StructField(self.col_company_response, StringType()),
-                StructField(self.col_consumer_consent_provided, StringType()),
+                #StructField(self.col_consumer_consent_provided, StringType()),
                 StructField(self.col_submitted_via, StringType()),
                 StructField(self.col_timely, StringType()),
                 StructField(self.col_date_sent_to_company, TimestampType()),
@@ -59,7 +59,7 @@ class FinanceDataSchema:
     def one_hot_encoding_features(self) -> List[str]:
         features = [
             self.col_company_response,
-            self.col_consumer_consent_provided,
+            #self.col_consumer_consent_provided,
             self.col_submitted_via,
         ]
         return features
