@@ -3,10 +3,12 @@ version: 2.1
 jobs:
   continuous-integration:
     docker:
-      - image: cimg/base:stable
-    resource_class: medium
+      - image: cimg/base:stable  # the type of machine
+    resource_class: medium       # power of the machine
+    
+    # the task you want to execute
     steps:
-      - checkout
+      - checkout #checkout code from github repo
 
       - run: 
           name: lint code
@@ -51,7 +53,7 @@ jobs:
 
   continuous-deployment:
     machine: true
-    resource_class: machine-learning-01/self-hosted-1
+    resource_class: ParisTian-DS/self-hosted-01
     environment:
       REPOSITORY: finance-complaint
       GAR_IMAGE_NAME: finance-complaint
@@ -96,7 +98,7 @@ workflows:
             - continuous-integration
 
       - sanity-check:
-          type: approval
+          type: approval   # can write anywhere, depends on all high level decision
           requires:
           - continuous-delivery
 
