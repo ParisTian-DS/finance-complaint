@@ -369,7 +369,7 @@ class FinanceComplaintEstimator:
             raise FinanceException(e, sys)
 
 
-#combine download/upload from/to cloud and make prediction using the local, latest model
+# combine download/upload from/to cloud and make prediction using the local, latest model
 # check if the model of s3 bucket is latest or not, if it is latest, it will download to local???
 class S3FinanceEstimator(FinanceComplaintEstimator, S3Estimator):
 

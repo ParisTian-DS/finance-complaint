@@ -20,7 +20,7 @@ jobs:
   
   continuous-delivery:
     docker:
-      - image: google/cloud-sdk
+      - image: google/cloud-sdk  # get google-sdk image from docker hub
     resource_class: medium
     environment:
       REPOSITORY: finance-complaint
@@ -48,12 +48,12 @@ jobs:
           command: gcloud auth configure-docker $GOOGLE_COMPUTE_ZONE-docker.pkg.dev
       
       - run:
-          name: push to private repository
+          name: push to private repository  # push image to artifact registry, artifact registry is similar to docker hub
           command: docker push $GOOGLE_COMPUTE_ZONE-docker.pkg.dev/${GOOGLE_PROJECT_ID}/$REPOSITORY/$IMAGE_NAME:$IMAGE_TAG 
 
   continuous-deployment:
-    machine: true
-    resource_class: ParisTian-DS/self-hosted-01
+    machine: true  # true means use my own machine
+    resource_class: ParisTian-DS/self-hosted-01  # will set this resource_class at circleci
     environment:
       REPOSITORY: finance-complaint
       GAR_IMAGE_NAME: finance-complaint
@@ -74,7 +74,7 @@ jobs:
 
       - run: 
           name: configure docker login
-          command: gcloud auth configure-docker $GOOGLE_COMPUTE_ZONE-docker.pkg.dev
+          command: gcloud auth configure-docker $GOOGLE_COMPUTE_ZONE-docker.pkg.dev  
 
       - run:
           name: pull image from private repository

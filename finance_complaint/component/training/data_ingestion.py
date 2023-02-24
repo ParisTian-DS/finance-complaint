@@ -74,8 +74,8 @@ class DataIngestion:
         try:
             required_interval = self.get_required_interval()
             logger.info("Started downloading files")
-            for index in range(1, len(required_interval)):
-                from_date, to_date = required_interval[index - 1], required_interval[index]
+            for index in range(1, len(required_interval)): 
+                from_date, to_date = required_interval[index-1], required_interval[index]
                 logger.debug(f"Generating data download url between {from_date} and {to_date}")
                 datasource_url: str = self.data_ingestion_config.datasource_url
                 url = datasource_url.replace("<todate>", to_date).replace("<fromdate>", from_date)
@@ -228,11 +228,12 @@ class DataIngestion:
             raise FinanceException(e, sys)
 
 
+## For unit testing
 def main():
     try:
         config = FinanceConfig()
         data_ingestion_config = config.get_data_ingestion_config()
-        data_ingestion = DataIngestion(data_ingestion_config=data_ingestion_config, n_day_interval=6)
+        data_ingestion = DataIngestion(data_ingestion_config=data_ingestion_config)#, n_day_interval=6)
         data_ingestion.initiate_data_ingestion()
     except Exception as e:
         raise FinanceException(e, sys)
