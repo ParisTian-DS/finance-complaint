@@ -1,10 +1,10 @@
-# Finance-Complaint 
+# Analysing Finance-Complaint 
 
 ### Problem Statement
-Complaints can give us insights into problems people are experiencing in the marketplace and help us to undestand the reason and do necessary modification in exisiting financial product if required.
+Customer complaints can provide valuable insights into the issues people are facing in the marketplace, allowing us to understand the root cause and make necessary modifications to existing financial products if needed.
 
 ### Solution Proposed
-By understanding existing complaints registered against financial products we can create an ML model that can help us to identify newly registered complaints whether they are problematic or not and accordingly company can take quick action to resolve the issue, and satisfy the customer's need.
+Through analyzing and understanding past complaints registered against financial products, we can develop a machine learning model that can help us identify newly registered complaints and determine whether they are problematic or not. This can enable the company to take swift action to resolve the issue and address the customer's needs, leading to improved customer satisfaction and retention.
 
 The problem is to identify registered complaint will be disputed by customer or not.
 
@@ -19,13 +19,6 @@ MongoDB
 GCP Compute Engine
 S3 Bucket
 Artifact Registry
-
-### Dashboarding
-Grafana
-Prometheus
-Node Exporter
-Promtail
-Loki
 
 ### How to run?
 #### WorkFLow setup
